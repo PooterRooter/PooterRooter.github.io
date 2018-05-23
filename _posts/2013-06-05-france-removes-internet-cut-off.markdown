@@ -1,30 +1,41 @@
 ---
 layout: post
-title:  "Welcome to Cerberus"
+title:  "TCP/UDP Send/Recv"
 date:   2013-06-05 20:33:11
 
 ---
                                                                                                                                            
-                                                                           
-                       `s/`                     `:s-                       
-               .y.      oMNs-                 .sNMy      -h`               
-               +MNs.     dMMMh-             .yNMMN`    -yMM:               
-               /MMMNy-   :MMMMNyyhdmmmmmdhyyNMMMMo   :hNMMM-               
-              .oMMMMMNd+. dMMMMMMMMMMMMMMMMMMMMMN`-omMMMMMM/`              
-         `-/sdNMMMMMMMMMN:+MMMMMMMMMMMMMMMMMMMMMy+NMMMMMMMMMNds/-`         
-        .mNmNMMMMMMMMMMMM+.MMMMNmmNMMMMMNmmNMMMM:sMMMMMMMMMMMNNmNm`        
-   .-/ohmMMMMMMMMMMMMMMMMs mMMMMMMMMMMMMMMMMMMMM`hMMMMMMMMMMMMMMMMmyo/-`   
- .dNNMMMMMMMMMMMMMMMMMMMMh hMMMMMNhddddddmMMMMMm mMMMMMMMMMMMMMMMMMMMMNNd` 
-  /mMMNdhhhdNMMMMMMMMMNdMm sMMMMMNNyyMyhNNMMMMMh MMdMMMMMMMMMMmdhhhdNMMd:  
-   `+oo`   .mMMMMMMMMNsMMN/-/dMMmmMNNMNNMNdMMmo:+MMNyMMMMMMMMMd.   .oo/`   
-       `  :mMMmyo//oyy/yMMMNd:yM+.h-....y-:Md+mNMMNs/hyo:/ohmMMd- ``       
-       -hdNms:`    `-ohsomMMM+`my `     ` +M.sMMMdosho-`    .:ymNhd`       
-        so-`          -shshMMh od         yh mMMhsho.          .:oo        
-                       `/hyyMM-.N- `   ` .N:/MNyyy:                        
-                         .yhyNd`ymss...osmd.NNshs.                         
-                          `ohsMy.mMMNNNMMN:dNsh+`                          
-                           `oysM:.yhhhhhh:+Moh+                            
-                            `oohy         dss+                             
-                             `s:d         m:o                              
-                              `-+         +:`                              
-                              ```         ` 
+TCP Send/Recv Client
+
+{% highlight ruby %}
+import socket
+             target_host = "www.google.com"
+             target_port = 80
+# create a socket object
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# connect the client
+client.connect((target_host,target_port))
+# send some data
+client.send("GET / HTTP/1.1\r\nHost: google.com\r\n\r\n")
+# receive some data 
+response = client.recv(4096)
+print response
+{% endhighlight %}
+
+
+
+UDP Send/Recv Client
+
+{% highlight ruby %}
+import socket
+             target_host = "127.0.0.1"
+             target_port = 80
+# create a socket object
+client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+# send some data
+client.sendto("AAABBBCCC",(target_host,target_port))
+# receive some data
+data, addr = client.recvfrom(4096)
+print data
+{% endhighlight %}
+
