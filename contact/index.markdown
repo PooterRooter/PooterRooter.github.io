@@ -5,7 +5,7 @@ title: About
 
 For inquiries, use any of the following. Email is ideal.
 
-Email: info@cerberus-consulting.com
+Email: info@cerberus-consulting.net
 
 Telephony: 415 909 8043
 
